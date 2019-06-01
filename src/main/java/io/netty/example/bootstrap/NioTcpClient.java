@@ -14,6 +14,8 @@ import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 
 /**
+ * 客户端的引导过程。
+ *
  * 使用NIO TCP传输的客户端。
  *
  * @author edwardlee03.lihg
