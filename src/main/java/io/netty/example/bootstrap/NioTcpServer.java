@@ -10,7 +10,6 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 
 import org.slf4j.Logger;
@@ -46,7 +45,7 @@ public class NioTcpServer {
                 });
 
         // 通过配置好的ServerBootstrap的实例绑定该Channel
-        ChannelFuture channelFuture = bootstrap.bind(new InetSocketAddress(8080));
+        ChannelFuture channelFuture = bootstrap.bind(8080);
         channelFuture.addListener(new ChannelFutureListener() {
             @Override
             public void operationComplete(ChannelFuture future) {

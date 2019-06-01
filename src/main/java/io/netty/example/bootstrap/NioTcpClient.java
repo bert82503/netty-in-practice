@@ -47,7 +47,7 @@ public class NioTcpClient {
 
             // Make the connection attempt.
             // 连接到远程主机
-            ChannelFuture channelFuture = bootstrap.connect(new InetSocketAddress("www.baidu.com", 80));
+            ChannelFuture channelFuture = bootstrap.connect("www.baidu.com", 80);
             channelFuture.addListener(new ChannelFutureListener() {
                 @Override
                 public void operationComplete(ChannelFuture future) {

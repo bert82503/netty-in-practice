@@ -11,7 +11,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
-import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 
 import org.slf4j.Logger;
@@ -52,8 +51,7 @@ public class EventLoopSharedChannelServer {
                         // 使用与分配给已被接受的子Channel相同的EventLoop
                         bootstrap.group(ctx.channel().eventLoop());
                         // 连接到远程节点
-                        connectFuture = bootstrap.connect(
-                                new InetSocketAddress("www.baidu.com", 80));
+                        connectFuture = bootstrap.connect("www.baidu.com", 80);
                     }
 
                     @Override
@@ -65,7 +63,8 @@ public class EventLoopSharedChannelServer {
                         }
                     }
                 });
-        ChannelFuture channelFuture = serverBootstrap.bind(new InetSocketAddress(8080));
+        // 绑定到本地地址
+        ChannelFuture channelFuture = serverBootstrap.bind(8080);
         channelFuture.addListener(new ChannelFutureListener() {
             @Override
             public void operationComplete(ChannelFuture future) {
