@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 使用NIO TCP传输的引导客户端。
  *
- * @author edwardlee03.lihg
+ * @since 2019-06-01
  */
 public class NioTcpClient {
     private static final Logger logger = LoggerFactory.getLogger(NioTcpClient.class);

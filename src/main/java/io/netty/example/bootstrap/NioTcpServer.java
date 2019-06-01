@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 引导服务器。
  *
- * @author edwardlee03.lihg
+ * @since 2019-06-01
  */
 public class NioTcpServer {
     private static final Logger logger = LoggerFactory.getLogger(NioTcpServer.class);
@@ -53,7 +53,7 @@ public class NioTcpServer {
                 if (future.isSuccess()) {
                     logger.info("Server bound");
                 } else {
-                    logger.info("Bound attempt failed");
+                    logger.info("Bind attempt failed");
                     logger.info("Exception cause", future.cause());
                 }
             }
