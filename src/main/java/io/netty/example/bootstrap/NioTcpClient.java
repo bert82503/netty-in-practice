@@ -13,6 +13,9 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 客户端的引导过程。
  *
@@ -21,6 +24,8 @@ import java.nio.charset.StandardCharsets;
  * @author edwardlee03.lihg
  */
 public class NioTcpClient {
+    private static final Logger logger = LoggerFactory.getLogger(NioTcpClient.class);
+
     public static void main(String[] args) {
         EventLoopGroup group = new NioEventLoopGroup();
         try {
@@ -35,7 +40,7 @@ public class NioTcpClient {
                     .handler(new SimpleChannelInboundHandler<ByteBuf>() {
                         @Override
                         protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) {
-                            System.out.println("Received data: " + msg.toString(StandardCharsets.UTF_8));
+                            logger.info("Received data: {}", msg.toString(StandardCharsets.UTF_8));
                         }
                     });
 
@@ -46,11 +51,11 @@ public class NioTcpClient {
                 @Override
                 public void operationComplete(ChannelFuture future) {
                     if (future.isSuccess()) {
-                        System.out.println("Connection established");
+                        logger.info("Connection established");
                         future.channel().close();
                     } else {
-                        System.err.println("Connection attempt failed");
-                        future.cause().printStackTrace();
+                        logger.info("Connection attempt failed");
+                        logger.info("Exception cause", future.cause());
                     }
                 }
             });

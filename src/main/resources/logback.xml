@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <!-- 定义日志文件的存储地址，勿在 Logback 的配置中使用相对路径 -->
+  <property name="LOG_HOME" value="${app.log.dir:-logs}"/>
+  <contextName>netty-example</contextName>
+
+  <include resource="logback-include.xml"/>
+
+  <root level="${app.log.level:-INFO}">
+    <appender-ref ref="STDOUT"/>
+  </root>
+</configuration>

@@ -27,6 +27,13 @@
             <version>4.0.56.Final</version>
         </dependency>
 
+        <!-- ============ Logging ============ -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+
         <!-- ============ Test ============ -->
         <!-- Documentation - http://testng.org/doc/documentation-main.html -->
         <dependency>
