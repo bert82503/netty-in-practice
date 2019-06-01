@@ -17,15 +17,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 客户端的引导过程。
- *
- * 使用NIO TCP传输的客户端。
+ * 使用NIO TCP传输的引导客户端。
  *
  * @author edwardlee03.lihg
  */
 public class NioTcpClient {
     private static final Logger logger = LoggerFactory.getLogger(NioTcpClient.class);
 
+    /**
+     * 客户端的引导过程。
+     */
     public static void main(String[] args) {
         EventLoopGroup group = new NioEventLoopGroup();
         try {
