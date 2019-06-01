@@ -10,7 +10,6 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
-import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 
 import org.slf4j.Logger;
@@ -60,9 +59,11 @@ public class NioTcpClient {
                     }
                 }
             });
+            // 优雅关闭
+            channelFuture.syncUninterruptibly();
         } finally {
-            // 优雅地关闭连接事件处理链
-//            group.shutdownGracefully();
+            // 优雅地关闭连接事件处理链，有序地释放所有资源
+            group.shutdownGracefully();
         }
     }
 }
