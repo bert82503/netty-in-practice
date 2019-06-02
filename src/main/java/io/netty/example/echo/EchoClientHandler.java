@@ -5,6 +5,8 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
+import java.nio.charset.StandardCharsets;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +20,7 @@ import org.slf4j.LoggerFactory;
 class EchoClientHandler extends ChannelInboundHandlerAdapter {
     private static final Logger logger = LoggerFactory.getLogger(EchoClientHandler.class);
 
-    private static final int SIZE = Integer.parseInt(System.getProperty("size", "256"));
+//    private static final int SIZE = Integer.parseInt(System.getProperty("size", "256"));
 
     private final ByteBuf firstMessage;
 
@@ -28,17 +30,25 @@ class EchoClientHandler extends ChannelInboundHandlerAdapter {
     EchoClientHandler() {
         logger.info("Create EchoClientHandler");
 
-        firstMessage = Unpooled.buffer(SIZE);
-        for (int i = 0; i < firstMessage.capacity(); i++) {
-            firstMessage.writeByte(i);
-        }
+//        firstMessage = Unpooled.buffer(SIZE);
+//        for (int i = 0; i < firstMessage.capacity(); i++) {
+//            firstMessage.writeByte(i);
+//        }
+
+        firstMessage = Unpooled.buffer(16);
+        firstMessage.writeBytes("ping-pong".getBytes(StandardCharsets.UTF_8));
     }
+
+    // 打开服务器连接
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
         logger.info("channelActive");
+        // Sends one message when a connection is open
         ctx.writeAndFlush(firstMessage);
     }
+
+    // 接收到服务器的响应数据
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
@@ -49,6 +59,7 @@ class EchoClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
         logger.info("channelReadComplete");
+        // echoes back any received data to the server
         ctx.flush();
     }
 

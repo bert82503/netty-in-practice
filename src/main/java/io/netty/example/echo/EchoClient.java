@@ -44,7 +44,7 @@ public final class EchoClient {
             // Wait until the connection is closed.
             future.channel().closeFuture().sync();
         } finally {
-            // Shut down the event loop to terminate all threads.
+            // Shutdown the event loop to terminate all threads.
             group.shutdownGracefully();
         }
     }

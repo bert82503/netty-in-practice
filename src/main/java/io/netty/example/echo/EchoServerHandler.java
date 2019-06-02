@@ -20,6 +20,8 @@ class EchoServerHandler extends ChannelInboundHandlerAdapter {
         logger.info("Create EchoServerHandler");
     }
 
+    // 接收到客户端的请求数据
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         logger.info("channelRead, msg:{}", msg);
@@ -29,6 +31,7 @@ class EchoServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
         logger.info("channelReadComplete");
+        // echoes back any received data from a client
         ctx.flush();
     }
 
