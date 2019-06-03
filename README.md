@@ -3,5 +3,5 @@
 Netty In Practice
 =================
 
-《Netty编程实战 - Netty in Practice》
+《Netty in Practice - Netty编程实战》
 

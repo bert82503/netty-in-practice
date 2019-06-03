@@ -1,6 +1,5 @@
-package io.netty.example.echo;
+package io.netty.example.objectecho;
 
-import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
@@ -8,24 +7,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Handler implementation for the echo server.
+ * Handles both client-side and server-side handler depending on which
+ * constructor was called.
  *
- * @since 2019-06-02
+ * @since 2019-06-03
  */
-@Sharable
-class EchoServerHandler extends ChannelInboundHandlerAdapter {
-    private static final Logger logger = LoggerFactory.getLogger(EchoServerHandler.class);
+class ObjectEchoServerHandler extends ChannelInboundHandlerAdapter {
+    private static final Logger logger = LoggerFactory.getLogger(ObjectEchoServerHandler.class);
 
-    EchoServerHandler() {
-        logger.info("Create EchoServerHandler");
+    ObjectEchoServerHandler() {
+        logger.info("Create ObjectEchoServerHandler");
     }
-
-    // 接收到客户端的请求数据
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        logger.info("channelRead, msg:{}", msg);
-        // echoes back any received data from a client
+        logger.info("channelRead");
+        // Echo back the received object to the client.
         ctx.write(msg);
     }
 

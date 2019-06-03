@@ -53,13 +53,13 @@ class EchoClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         logger.info("channelRead, msg:{}", msg);
+        // echoes back any received data to the server
         ctx.write(msg);
     }
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
         logger.info("channelReadComplete");
-        // echoes back any received data to the server
         ctx.flush();
     }
 
