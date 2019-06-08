@@ -30,7 +30,7 @@ class DiscardServerHandler extends SimpleChannelInboundHandler<Object> {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         // Close the connection when an exception is raised.
         // 当引发异常时，关闭连接
-        logger.info("exception caught", cause);
+        logger.warn("exception caught", cause);
         ctx.close();
     }
 }

@@ -23,8 +23,8 @@ public final class DiscardServer {
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             // 引导服务器
-            ServerBootstrap bootstrap = new ServerBootstrap();
-            bootstrap.group(bossGroup, workerGroup)
+            ServerBootstrap serverBootstrap = new ServerBootstrap();
+            serverBootstrap.group(bossGroup, workerGroup)
                     // 设置"服务器套接字连接"类
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new ChannelInitializer<SocketChannel>() {
@@ -37,7 +37,7 @@ public final class DiscardServer {
 
             // Bind and start to accept incoming connections.
             // 绑定并开始接受传入的连接
-            ChannelFuture future = bootstrap.bind(PORT).sync();
+            ChannelFuture future = serverBootstrap.bind(PORT).sync();
 
             // Wait until the server socket is closed.
             // In this example, this does not happen, but you can do that to gracefully
@@ -47,6 +47,7 @@ public final class DiscardServer {
             future.channel().closeFuture().sync();
         } finally {
             // 优雅地关闭连接事件处理链
+            // 释放所有的资源，关闭所有的当前正在使用中的Channel
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
         }

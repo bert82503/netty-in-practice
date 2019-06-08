@@ -66,7 +66,7 @@ class EchoClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         // Close the connection when an exception is raised.
-        logger.info("exception caught", cause);
+        logger.warn("exception caught", cause);
         ctx.close();
     }
 }

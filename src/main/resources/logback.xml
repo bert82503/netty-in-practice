@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-  <!-- 定义日志文件的存储地址，勿在 Logback 的配置中使用相对路径 -->
-  <property name="LOG_HOME" value="${app.log.dir:-logs}"/>
-  <contextName>netty-example</contextName>
+<configuration debug="false">
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
 
-  <include resource="logback-include.xml"/>
-
-  <root level="${app.log.level:-INFO}">
-    <appender-ref ref="STDOUT"/>
+  <root level="${logLevel:-info}">
+    <appender-ref ref="STDOUT" />
   </root>
 </configuration>
