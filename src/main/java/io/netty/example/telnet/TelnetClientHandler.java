@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Handles a client-side channel.
+ * 处理客户端连接套接字。
  *
  * @since 2019-06-09
  */

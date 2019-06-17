@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 
 /**
  * Simplistic telnet client.
+ * telnet客户端。
  *
  * @since 2019-06-09
  */
@@ -30,9 +31,11 @@ public final class TelnetClient {
                     .handler(new TelnetClientInitializer());
 
             // Start the connection attempt.
+            // 开始连接尝试
             Channel ch = bootstrap.connect(HOST, PORT).sync().channel();
 
             // Read commands from the stdin.
+            // 从标准输入读取命令
             ChannelFuture lastWriteFuture = null;
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
             for (; ; ) {
@@ -42,9 +45,11 @@ public final class TelnetClient {
                 }
 
                 // Sends the received line to the server.
+                // 将收到的数据发送到服务器
                 lastWriteFuture = ch.writeAndFlush(line + System.lineSeparator());
 
                 // If user typed the 'bye' command, wait until the server closes the connection.
+                // 等到服务器关闭连接
                 if (BYE.equalsIgnoreCase(line)) {
                     ch.closeFuture().sync();
                     break;
@@ -52,6 +57,7 @@ public final class TelnetClient {
             }
 
             // Wait until all messages are flushed before closing the channel.
+            // 等到所有消息都被刷新后，再关闭连接套接字
             if (lastWriteFuture != null) {
                 lastWriteFuture.sync();
             }

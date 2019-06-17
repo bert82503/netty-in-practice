@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Handler implementation for the echo server.
+ * echo服务器处理器实现。
  *
  * @since 2019-06-02
  */

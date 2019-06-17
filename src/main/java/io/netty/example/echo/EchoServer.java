@@ -14,6 +14,7 @@ import io.netty.handler.logging.LoggingHandler;
 
 /**
  * Echoes back any received data from a client.
+ * 回声从客户端收到的任何数据。
  *
  * @since 2019-06-02
  */
@@ -22,6 +23,7 @@ public final class EchoServer {
 
     public static void main(String[] args) throws InterruptedException {
         // Configure the server.
+        // 配置引导服务器
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
@@ -39,12 +41,15 @@ public final class EchoServer {
                     });
 
             // Start the server.
+            // 启动引导服务器
             ChannelFuture future = serverBootstrap.bind(PORT).sync();
 
             // Wait until the server socket is closed.
+            // 等待直到服务器套接字关闭
             future.channel().closeFuture().sync();
         } finally {
             // Shutdown all event loops to terminate all threads.
+            // 优雅地关闭所有连接事件处理链，终止所有线程
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }

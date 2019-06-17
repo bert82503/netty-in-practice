@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Creates a newly configured {@link ChannelPipeline} for a new channel.
+ * 为新的连接套接字创建新配置的{@link ChannelPipeline}。
  *
  * @since 2019-06-08
  */

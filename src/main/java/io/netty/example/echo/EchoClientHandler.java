@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
  * Handler implementation for the echo client.  It initiates the ping-pong
  * traffic between the echo client and server by sending the first message to
  * the server.
+ * echo客户端处理器实现，通过向服务器发送第一条消息来启动echo客户端和服务器之间的反复交换/乒乓流量。
  *
  * @since 2019-06-02
  */

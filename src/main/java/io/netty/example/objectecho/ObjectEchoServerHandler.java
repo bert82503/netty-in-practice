@@ -23,6 +23,7 @@ class ObjectEchoServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         logger.info("channelRead");
         // Echo back the received object to the client.
+        // 将收到的对象回送给客户端
         ctx.write(msg);
     }
 

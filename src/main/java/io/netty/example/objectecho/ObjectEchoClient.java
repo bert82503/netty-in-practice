@@ -37,6 +37,7 @@ public final class ObjectEchoClient {
                     });
 
             // Start the connection attempt.
+            // 开始连接尝试
             bootstrap.connect(HOST, PORT).sync().channel().closeFuture().sync();
         } finally {
             group.shutdownGracefully();

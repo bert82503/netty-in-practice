@@ -40,6 +40,7 @@ public final class ObjectEchoServer {
                     });
 
             // Bind and start to accept incoming connections.
+            // 绑定并开始接收进来的连接
             serverBootstrap.bind(PORT).sync().channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();

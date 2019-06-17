@@ -9,6 +9,7 @@ import io.netty.handler.logging.LoggingHandler;
 
 /**
  * Simplistic telnet server.
+ * telnet服务器。
  *
  * @since 2019-06-08
  */

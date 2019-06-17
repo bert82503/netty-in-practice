@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Handles a server-side channel.
+ * 处理服务器端连接套接字。
  *
  * @since 2019-06-08
  */
@@ -30,6 +31,7 @@ class TelnetServerHandler extends SimpleChannelInboundHandler<String> {
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         logger.info("channelActive");
         // Send greeting for a new connection.
+        // 发送新连接的问候语
         ctx.write("Welcome to " + InetAddress.getLocalHost().getHostName() + "!" + System.lineSeparator());
         ctx.write("It is " + new Date() + " now." + System.lineSeparator());
         ctx.flush();
@@ -39,6 +41,7 @@ class TelnetServerHandler extends SimpleChannelInboundHandler<String> {
     protected void channelRead0(ChannelHandlerContext ctx, String request) {
         logger.info("channelRead0");
         // Generate and write a response.
+        // 生成并写回响应
         String response;
         boolean close = false;
         if (request.isEmpty()) {

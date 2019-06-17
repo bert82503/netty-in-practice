@@ -73,12 +73,15 @@ public final class LocalEcho {
                     });
 
             // Start the server.
+            // 启动引导服务器
             serverBootstrap.bind(address).sync();
 
             // Start the client.
+            // 启动引导客户端
             Channel channel = bootstrap.connect(address).sync().channel();
 
             // Read commands from the stdin.
+            // 从标准输入中读取命令
             logger.info("Enter text (quit to end)");
             ChannelFuture lastWriteFuture = null;
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -89,10 +92,12 @@ public final class LocalEcho {
                 }
 
                 // Sends the received line to the server.
+                // 将收到的数据发送到服务器
                 lastWriteFuture = channel.writeAndFlush(line);
             }
 
             // Wait until all messages are flushed before closing the channel.
+            // 等到所有消息都被刷新后，再关闭连接套接字
             if (lastWriteFuture != null) {
                 lastWriteFuture.awaitUninterruptibly();
             }
